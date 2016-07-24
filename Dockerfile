@@ -1,16 +1,16 @@
-FROM ubuntu:14.04
-MAINTAINER Kyle Manna <kyle@kylemanna.com>
+FROM phusion/baseimage:0.9.18
+MAINTAINER Holger Schinzel <holger@dash.org>
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8842ce5e && \
-    echo "deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu trusty main" > /etc/apt/sources.list.d/bitcoin.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 44AFED48 && \
+    echo "deb http://ppa.launchpad.net/dash.org/dash/ubuntu trusty main" > /etc/apt/sources.list.d/dash.list
 
 RUN apt-get update && \
-    apt-get install -y bitcoind && \
+    apt-get install -y dashd && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV HOME /bitcoin
-RUN useradd -s /bin/bash -m -d /bitcoin bitcoin
-RUN chown bitcoin:bitcoin -R /bitcoin
+ENV HOME /dash
+RUN useradd -s /bin/bash -m -d /dash dash
+RUN chown dash:dash -R /dash
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
@@ -19,13 +19,13 @@ RUN chmod a+x /usr/local/bin/*
 # denied issues when executing /bin/bash from trusted builds.  Building locally
 # works fine (strange).  Using the upstream docker (0.11.1) pkg from
 # http://get.docker.io/ubuntu works fine also and seems simpler.
-USER bitcoin
+USER dash
 
-VOLUME ["/bitcoin"]
+VOLUME ["/dash"]
 
-EXPOSE 8332 8333 18332 18333
+EXPOSE 9998 9999 19998 19999
 
-WORKDIR /bitcoin
+WORKDIR /dash
 
-CMD ["btc_oneshot"]
+CMD ["dash_oneshot"]
 

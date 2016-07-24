@@ -4,7 +4,7 @@
 #
 set -ex
 
-BTC_IMAGE=${BTC_IMAGE:-kylemanna/bitcoind}
+DASH_IMAGE=${DASH_IMAGE:-dashpay/dashd}
 
 distro=$1
 shift
@@ -35,23 +35,23 @@ if [ "$distro" = "trusty" -o "$distro" = "ubuntu:14.04" ]; then
 fi
 
 # Always clean-up, but fail successfully
-docker kill bitcoind-node 2>/dev/null || true
-docker rm bitcoind-node 2>/dev/null || true
-stop docker-bitcoind 2>/dev/null || true
+docker kill dashd-node 2>/dev/null || true
+docker rm dashd-node 2>/dev/null || true
+stop docker-dashd 2>/dev/null || true
 
 # Always pull remote images to avoid caching issues
-if [ -z "${BTC_IMAGE##*/*}" ]; then
-    docker pull $BTC_IMAGE
+if [ -z "${DASH_IMAGE##*/*}" ]; then
+    docker pull $DASH_IMAGE
 fi
 
 # Initialize the data container
-docker volume create --name=bitcoind-data
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE btc_init
+docker volume create --name=dashd-data
+docker run -v dashd-data:/dash --rm $DASH_IMAGE dash_init
 
-# Start bitcoind via upstart and docker
-curl https://raw.githubusercontent.com/kylemanna/docker-bitcoind/master/upstart.init > /etc/init/docker-bitcoind.conf
-start docker-bitcoind
+# Start dashd via upstart and docker
+curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/upstart.init > /etc/init/docker-dashd.conf
+start docker-dashd
 
 set +ex
-echo "Resulting bitcoin.conf:"
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE cat /bitcoin/.bitcoin/bitcoin.conf
+echo "Resulting dash.conf:"
+docker run -v dashd-data:/dash --rm $DASH_IMAGE cat /dash/.dash/dash.conf

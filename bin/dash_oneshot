@@ -2,8 +2,8 @@
 
 set -ex
 
-# Generate bitcoin.conf
-btc_init
+# Generate dash.conf
+dash_init
 
 if [ $# -gt 0 ]; then
     args=("$@")
@@ -11,4 +11,4 @@ else
     args=("-rpcallowip=::/0")
 fi
 
-exec bitcoind "${args[@]}"
+exec dashd "${args[@]}"
