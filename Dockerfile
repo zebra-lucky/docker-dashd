@@ -1,6 +1,9 @@
 FROM phusion/baseimage:0.9.18
 MAINTAINER Holger Schinzel <holger@dash.org>
 
+ARG USER_ID
+ARG GROUP_ID
+
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 44AFED48 && \
     echo "deb http://ppa.launchpad.net/dash.org/dash/ubuntu trusty main" > /etc/apt/sources.list.d/dash.list
 
@@ -9,7 +12,13 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV HOME /dash
-RUN useradd -s /bin/bash -m -d /dash dash
+
+# add user with specified (or default) user/group ids
+ENV USER_ID ${USER_ID:-1000}
+ENV GROUP_ID ${GROUP_ID:-1000}
+RUN groupadd -g ${GROUP_ID} dash
+RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
+
 RUN chown dash:dash -R /dash
 
 ADD ./bin /usr/local/bin
