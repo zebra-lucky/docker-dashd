@@ -1,8 +1,8 @@
 Dashd for Docker
 ================
 
-[![Docker Stars](https://img.shields.io/docker/stars/dashpay/dashd.svg)](https://hub.docker.com/r/dashpay/dashd/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/dashpay/dashd.svg)](https://hub.docker.com/r/dashpay/dashd/)
+[![Docker Stats](http://dockeri.co/image/dashpay/dashd)](https://hub.docker.com/r/dashpay/dashd/)
+
 [![Build Status](https://travis-ci.org/dashpay/docker-dashd.svg?branch=master)](https://travis-ci.org/dashpay/docker-dashd/)
 [![ImageLayers](https://imagelayers.io/badge/dashpay/dashd:latest.svg)](https://hub.docker.com/r/dashpay/dashd/)
 
