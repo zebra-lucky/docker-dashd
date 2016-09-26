@@ -3,13 +3,13 @@ set -e
 
 # Generate the password the first time
 dash_init 2>/dev/null
-eval `grep rpcpassword $HOME/.dash/dash.conf`
+eval `grep rpcpassword $HOME/.dashcore/dash.conf`
 rpcpassword1=$rpcpassword
 
 # Generate the password again
-rm ~/.dash/dash.conf
+rm ~/.dashcore/dash.conf
 dash_init 2>/dev/null
-eval `grep rpcpassword $HOME/.dash/dash.conf`
+eval `grep rpcpassword $HOME/.dashcore/dash.conf`
 rpcpassword2=$rpcpassword
 
 

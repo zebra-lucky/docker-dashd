@@ -9,6 +9,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 44AFED48 && \
 
 RUN apt-get update && \
     apt-get install -y dashd && \
+    cd /usr/bin && curl https://dashpay.atlassian.net/builds/artifact/DASHL-DEV/JOB1/build-644/gitian-linux-dash-dist/dash-0.12.1-linux64.tar.gz | tar xvz --strip-components=2 --wildcards dash-*/bin/dash* && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV HOME /dash
