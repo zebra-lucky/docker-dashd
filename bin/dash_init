@@ -4,13 +4,13 @@ set -ex
 
 # This shouldn't be in the Dockerfile or containers built from the same image
 # will have the same credentials.
-if [ ! -e "$HOME/.dash/dash.conf" ]; then
-    mkdir -p $HOME/.dash
+if [ ! -e "$HOME/.dashcore/dash.conf" ]; then
+    mkdir -p $HOME/.dashcore
 
     echo "Creating dash.conf"
 
     # Seed a random password for JSON RPC server
-    cat <<EOF > $HOME/.dash/dash.conf
+    cat <<EOF > $HOME/.dashcore/dash.conf
 disablewallet=${DISABLEWALLET:-1}
 printtoconsole=${PRINTTOCONSOLE:-1}
 rpcuser=${RPCUSER:-dashrpc}
@@ -19,6 +19,6 @@ EOF
 
 fi
 
-cat $HOME/.dash/dash.conf
+cat $HOME/.dashcore/dash.conf
 
 echo "Initialization completed successfully"

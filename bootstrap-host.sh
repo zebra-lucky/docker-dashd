@@ -54,4 +54,4 @@ start docker-dashd
 
 set +ex
 echo "Resulting dash.conf:"
-docker run -v dashd-data:/dash --rm $DASH_IMAGE cat /dash/.dash/dash.conf
+docker run -v dashd-data:/dash --rm $DASH_IMAGE cat /dash/.dashcore/dash.conf
