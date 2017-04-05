@@ -54,6 +54,14 @@ Quick Start
 Documentation
 -------------
 
+* To run in testnet, add environment variable `TESTNET=1` to `docker run` as such:
+
+        docker run -v dashd-data:/dash --name=dashd-node -d \
+            --env TESTNET=1 \
+            -p 9999:9999 \
+            -p 127.0.0.1:9998:9998 \
+            dashpay/dashd
+
 * Additional documentation in the [docs folder](docs).
 
 Credits
