@@ -14,10 +14,11 @@ RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 
 RUN chown dash:dash -R /dash
 
-ADD https://github.com/zebra-lucky/dash/releases/download/v0.12.2/dash-linux-64-v0.12.2-testbuild.tgz /tmp/
-RUN tar -xzvf /tmp/dash-linux-64-v0.12.2-testbuild.tgz -C /tmp/
-RUN cp /tmp/dash-linux-64-v0.12.2-testbuild/bin/*  /usr/local/bin
-RUN rm -rf /tmp/dash-linux-64-v0.12.2-testbuild
+ADD https://github.com/dashpay/dash/releases/download/v0.12.2.0/dashcore-0.12.2.0-linux64.tar.gz /tmp/
+RUN tar -xzvf /tmp/dashcore-0.12.2.0-linux64.tar.gz -C /tmp/ \
+    && cp /tmp/dashcore-0.12.2/bin/*  /usr/local/bin \
+    && cp /tmp/dashcore-0.12.2/lib/*  /usr/local/lib \
+    && rm -rf /tmp/dashcore-0.12.2.0-linux64.tar.gz
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
