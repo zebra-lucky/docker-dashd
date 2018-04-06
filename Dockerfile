@@ -14,11 +14,11 @@ RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 
 RUN chown dash:dash -R /dash
 
-ADD https://github.com/dashpay/dash/releases/download/v0.12.2.3/dashcore-0.12.2.3-linux64.tar.gz /tmp/
-RUN tar -xzvf /tmp/dashcore-0.12.2.3-linux64.tar.gz -C /tmp/ \
-    && cp /tmp/dashcore-0.12.2/bin/*  /usr/local/bin \
-    && cp /tmp/dashcore-0.12.2/lib/*  /usr/local/lib \
-    && rm -rf /tmp/dashcore-0.12.2.3-linux64.tar.gz
+ADD https://bamboo.dash.org/artifact/DASHL-DEV/JOB1/build-latestSuccessful/gitian-linux-dash-dist/dashcore-0.12.3-x86_64-linux-gnu.tar.gz /tmp/
+RUN tar -xzvf /tmp/dashcore-0.12.3-x86_64-linux-gnu.tar.gz -C /tmp/ \
+    && cp /tmp/dashcore-*/bin/*  /usr/local/bin \
+    && cp /tmp/dashcore-*/lib/*  /usr/local/lib \
+    && rm -rf /tmp/dashcore-*
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
