@@ -1,5 +1,5 @@
-FROM phusion/baseimage
-MAINTAINER Holger Schinzel <holger@dash.org>
+FROM debian:stretch-slim
+MAINTAINER zebra-lucky <zebra.lucky@gmail.com>
 
 ARG USER_ID
 ARG GROUP_ID
@@ -14,8 +14,11 @@ RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 
 RUN chown dash:dash -R /dash
 
-ADD https://bamboo.dash.org/artifact/DASHL-DEV/JOB1/build-latestSuccessful/gitian-linux-dash-dist/dashcore-0.12.3-x86_64-linux-gnu.tar.gz /tmp/
-RUN tar -xzvf /tmp/dashcore-0.12.3-x86_64-linux-gnu.tar.gz -C /tmp/ \
+RUN apt-get update && apt-get install -y wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && cd /tmp/ \
+    && wget https://github.com/dashpay/dash/releases/download/v0.12.3.0-rc2/dashcore-0.12.3.0-rc2-x86_64-linux-gnu.tar.gz \
+    && tar -xzvf dashcore-*-x86_64-linux-gnu.tar.gz \
     && cp /tmp/dashcore-*/bin/*  /usr/local/bin \
     && cp /tmp/dashcore-*/lib/*  /usr/local/lib \
     && rm -rf /tmp/dashcore-*
@@ -31,7 +34,7 @@ USER dash
 
 VOLUME ["/dash"]
 
-EXPOSE 9998 9999 19998 19999
+EXPOSE 19998 19999
 
 WORKDIR /dash
 
