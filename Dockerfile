@@ -34,7 +34,7 @@ USER dash
 
 VOLUME ["/dash"]
 
-EXPOSE 19998 19999
+EXPOSE 9998 9999
 
 WORKDIR /dash
 
