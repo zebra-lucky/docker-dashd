@@ -17,7 +17,7 @@ RUN chown dash:dash -R /dash
 RUN apt-get update && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/* \
     && cd /tmp/ \
-    && wget https://github.com/dashpay/dash/releases/download/v0.14.0.2/dashcore-0.14.0.2-x86_64-linux-gnu.tar.gz \
+    && wget https://github.com/dashpay/dash/releases/download/v0.14.0.3/dashcore-0.14.0.3-x86_64-linux-gnu.tar.gz \
     && tar -xzvf dashcore-*-x86_64-linux-gnu.tar.gz \
     && cp /tmp/dashcore-*/bin/*  /usr/local/bin \
     && cp /tmp/dashcore-*/lib/*  /usr/local/lib \
