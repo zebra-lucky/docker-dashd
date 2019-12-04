@@ -15,9 +15,15 @@ RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 RUN chown dash:dash -R /dash
 
 RUN apt-get update && apt-get install -y wget \
+    && download_url=https://github.com/dashpay/dash/releases/download/ \
+    && version=0.14.0.4 \
+    && version_path=v${version}/ \
+    && tar_file=dashcore-${version}-x86_64-linux-gnu.tar.gz \
+    && sum=15d111f4de3f49a67dba879d680b690c941f86ad2e65e3b6b3b9b57eb37d1b42 \
     && rm -rf /var/lib/apt/lists/* \
     && cd /tmp/ \
-    && wget https://github.com/dashpay/dash/releases/download/v0.14.0.3/dashcore-0.14.0.3-x86_64-linux-gnu.tar.gz \
+    && wget ${download_url}${version_path}${tar_file} \
+    && echo $sum $tar_file | sha256sum -c \
     && tar -xzvf dashcore-*-x86_64-linux-gnu.tar.gz \
     && cp /tmp/dashcore-*/bin/*  /usr/local/bin \
     && cp /tmp/dashcore-*/lib/*  /usr/local/lib \
