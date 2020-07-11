@@ -13,13 +13,12 @@ RUN groupadd -g ${GROUP_ID} dash
 RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 
 RUN chown dash:dash -R /dash
-
 RUN apt-get update && apt-get install -y wget \
     && download_url=https://github.com/dashpay/dash/releases/download/ \
-    && version=0.15.0.0 \
+    && version=0.16.0.0-rc2 \
     && version_path=v${version}/ \
     && tar_file=dashcore-${version}-x86_64-linux-gnu.tar.gz \
-    && sum=4cc0815ebd595f3d0134a8df9e6224cbe3d79398a5a899b60ca5f4ab8a576160 \
+    && sum=26af3987fb8fc09b0e84d7ba6cbafaf9c9d5c7cb9de613e8b6b6c94d6b82c7b7 \
     && rm -rf /var/lib/apt/lists/* \
     && cd /tmp/ \
     && wget ${download_url}${version_path}${tar_file} \
