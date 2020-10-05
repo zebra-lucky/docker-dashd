@@ -16,10 +16,10 @@ RUN chown dash:dash -R /dash
 
 RUN apt-get update && apt-get install -y wget \
     && download_url=https://github.com/dashpay/dash/releases/download/ \
-    && version=0.15.0.0 \
+    && version=0.16.0.1 \
     && version_path=v${version}/ \
     && tar_file=dashcore-${version}-x86_64-linux-gnu.tar.gz \
-    && sum=4cc0815ebd595f3d0134a8df9e6224cbe3d79398a5a899b60ca5f4ab8a576160 \
+    && sum=d1cfa14ee614872d21956f4fc6648969049a9354cf638efcf69916c0b6465346 \
     && rm -rf /var/lib/apt/lists/* \
     && cd /tmp/ \
     && wget ${download_url}${version_path}${tar_file} \
