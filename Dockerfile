@@ -13,7 +13,7 @@ RUN groupadd -g ${GROUP_ID} dash
 RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 
 RUN chown dash:dash -R /dash
-RUN apt-get update && apt-get install -y wget \
+RUN apt-get update && apt-get install -y wget vim less net-tools git python3 \
     && download_url=https://github.com/dashpay/dash/releases/download/ \
     && version=0.16.1.1 \
     && version_path=v${version}/ \
