@@ -15,10 +15,10 @@ RUN useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /dash dash
 RUN chown dash:dash -R /dash
 RUN apt-get update && apt-get install -y wget vim less net-tools git python3 \
     && download_url=https://github.com/dashpay/dash/releases/download/ \
-    && version=0.16.1.1 \
+    && version=0.17.0.0-rc2 \
     && version_path=v${version}/ \
     && tar_file=dashcore-${version}-x86_64-linux-gnu.tar.gz \
-    && sum=8803928bd18e9515f1254f97751eb6e537a084d66111ce7968eafb23e26bf3a5 \
+    && sum=aef11fe6b6982ff80855db06dc3b911bd1875a0b63d8e0ec33466938e2354ec0 \
     && rm -rf /var/lib/apt/lists/* \
     && cd /tmp/ \
     && wget ${download_url}${version_path}${tar_file} \
